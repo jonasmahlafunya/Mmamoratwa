@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Mamoratwa Wa Afrika</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body { background: var(--cream); min-height: 100vh; display: flex; flex-direction: column; }
+    .login-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; padding: 100px 20px 40px; }
+    .login-card { background: var(--white); border-radius: 12px; box-shadow: var(--shadow-lg); width: 100%; max-width: 440px; overflow: hidden; }
+    .login-header { background: var(--maroon-dark); padding: 36px 36px 28px; text-align: center; position: relative; overflow: hidden; }
+    .login-header::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(201,168,76,0.08) 10px, rgba(201,168,76,0.08) 12px); }
+    .login-icon { width: 56px; height: 56px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--maroon-dark); position: relative; z-index: 1; }
+    .login-title { font-family: var(--font-display); font-size: 26px; font-weight: 400; color: var(--white); position: relative; z-index: 1; margin-bottom: 4px; }
+    .login-sub { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
+    .login-body { padding: 32px 36px; }
+    .login-tabs { display: flex; border-bottom: 2px solid var(--cream-dark); margin-bottom: 28px; }
+    .login-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: var(--transition); }
+    .login-tab.active { color: var(--maroon); border-bottom-color: var(--maroon); }
+    .credentials-hint { background: var(--cream); border-radius: 6px; padding: 12px 14px; font-size: 12px; color: var(--mid-grey); margin-bottom: 20px; border-left: 3px solid var(--gold); line-height: 1.8; }
+    .credentials-hint code { font-family: monospace; color: var(--maroon); background: rgba(107,15,26,0.06); padding: 1px 5px; border-radius: 3px; }
+    .forgot-link { font-size: 12px; color: var(--maroon); float: right; margin-top: -14px; margin-bottom: 20px; }
+    .register-link { text-align: center; font-size: 13px; color: var(--mid-grey); margin-top: 20px; }
+    .register-link a { color: var(--maroon); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div><div class="nav-logo-text">Mamoratwa Wa Afrika</div><div class="nav-logo-sub">Funeral Undertakers</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services &amp; Packages</a></li>
+    <li><a href="community.html">Community</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="register.html" class="btn btn-gold btn-sm">Register</a>
+  </div>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="login-wrapper">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="login-icon">M</div>
+      <div class="login-title">Welcome Back</div>
+      <div class="login-sub">Sign in to your MWAU account</div>
+    </div>
+
+    <div class="login-body">
+      <!-- Tab Switch -->
+      <div class="login-tabs">
+        <div class="login-tab active" onclick="switchTab('member')">Member Login</div>
+        <div class="login-tab" onclick="switchTab('admin')">Admin Login</div>
+      </div>
+
+      <!-- Member Hint -->
+      <div class="credentials-hint" id="hint-member">
+        <strong>Demo credentials:</strong><br>
+        Email: <code>member@mwau.co.za</code><br>
+        Password: <code>member123</code>
+      </div>
+
+      <!-- Admin Hint -->
+      <div class="credentials-hint hidden" id="hint-admin">
+        <strong>Demo credentials:</strong><br>
+        Email: <code>admin@mwau.co.za</code><br>
+        Password: <code>admin123</code>
+      </div>
+
+      <div id="login-error" class="alert alert-error hidden">Invalid email or password. Please try again.</div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="login-email" class="form-control" placeholder="your@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••••" />
+      </div>
+      <a href="#" class="forgot-link">Forgot password?</a>
+      <div style="clear:both;"></div>
+
+      <button class="btn btn-maroon w-full btn-lg" style="justify-content:center;margin-top:8px;" onclick="handleLogin()">
+        Sign In
+      </button>
+
+      <div class="register-link">
+        Don't have an account? <a href="register.html">Register here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" style="padding:24px 40px;">
+  <div class="footer-bottom" style="border-top:none;padding-top:0;">
+    <div>© 2025 Mamoratwa Wa Afrika Undertakers.</div>
+    <a href="privacy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  // Redirect if already logged in
+  document.addEventListener('DOMContentLoaded', () => {
+    const s = Auth.getSession();
+    if (s) {
+      window.location.href = s.role === 'admin' ? 'admin-dashboard.html' : 'member-dashboard.html';
+    }
+    // Pre-fill from URL param
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('role') === 'admin') switchTab('admin');
+  });
+
+  function switchTab(tab) {
+    document.querySelectorAll('.login-tab').forEach((t, i) => {
+      t.classList.toggle('active', (i === 0 && tab === 'member') || (i === 1 && tab === 'admin'));
+    });
+    document.getElementById('hint-member').classList.toggle('hidden', tab !== 'member');
+    document.getElementById('hint-admin').classList.toggle('hidden', tab !== 'admin');
+    // Pre-fill demo
+    if (tab === 'member') {
+      document.getElementById('login-email').value = 'member@mwau.co.za';
+      document.getElementById('login-password').value = 'member123';
+    } else {
+      document.getElementById('login-email').value = 'admin@mwau.co.za';
+      document.getElementById('login-password').value = 'admin123';
+    }
+    document.getElementById('login-error').classList.add('hidden');
+  }
+
+  function handleLogin() {
+    const email    = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+    const errEl    = document.getElementById('login-error');
+
+    if (!email || !password) { errEl.textContent = 'Please enter your email and password.'; errEl.classList.remove('hidden'); return; }
+
+    const result = Auth.login(email, password);
+    if (result.success) {
+      showToast('Welcome back, ' + result.user.firstName + '!', 'success', 1500);
+      setTimeout(() => {
+        window.location.href = result.user.role === 'admin' ? 'admin-dashboard.html' : 'member-dashboard.html';
+      }, 800);
+    } else {
+      errEl.textContent = result.error;
+      errEl.classList.remove('hidden');
+    }
+  }
+
+  // Enter key
+  document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+  // Pre-fill member by default
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('login-email').value    = 'member@mwau.co.za';
+    document.getElementById('login-password').value = 'member123';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services &amp; Packages – Mamoratwa Wa Afrika</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 48px; }
+    .compare-table { margin-top: 48px; }
+    .compare-table table { width: 100%; }
+    .compare-table thead th:first-child { text-align: left; }
+    .compare-table thead th:not(:first-child) { text-align: center; }
+    .compare-table tbody td:first-child { font-size: 14px; color: var(--mid-grey); }
+    .compare-table tbody td:not(:first-child) { text-align: center; font-size: 15px; }
+    .tick { color: var(--status-active); font-size: 17px; }
+    .cross { color: var(--light-grey); font-size: 17px; }
+    .services-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 36px; }
+    .service-card { background: var(--white); border-radius: 8px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; border: 1px solid var(--cream-dark); box-shadow: var(--shadow-sm); }
+    .service-icon { width: 44px; height: 44px; border-radius: 8px; background: rgba(107,15,26,0.08); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .service-title { font-size: 15px; font-weight: 600; color: var(--maroon-dark); margin-bottom: 4px; }
+    .service-body { font-size: 13px; color: var(--mid-grey); line-height: 1.7; }
+    @media (max-width: 900px) { .plans-grid { grid-template-columns: 1fr; } .services-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div><div class="nav-logo-text">Mamoratwa Wa Afrika</div><div class="nav-logo-sub">Funeral Undertakers</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html" class="active">Services &amp; Packages</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+  </ul>
+  <div class="nav-actions" id="nav-actions">
+    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+    <a href="register.html" class="btn btn-gold btn-sm">Get a Quote</a>
+  </div>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-pattern pattern-dark"></div>
+  <div class="page-header-content">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><span>Services &amp; Packages</span></div>
+    <h1 class="page-header-title">Services &amp; <em style="font-style:italic;color:var(--gold-light);">Packages</em></h1>
+    <p class="page-header-subtitle">Comprehensive funeral cover plans designed around your family's needs and budget.</p>
+  </div>
+</div>
+
+<!-- PLANS -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Our Plans</div>
+      <h2 class="section-title">Choose Your <strong>Cover Plan</strong></h2>
+      <p class="section-body" style="margin:0 auto;text-align:center;">All plans include professional, compassionate service from our experienced team. Monthly premiums are fixed with no hidden fees.</p>
+    </div>
+    <div class="plans-grid">
+      <!-- COMFORT -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Comfort Plan</div>
+          <div class="plan-price"><span class="plan-price-currency">R</span><span class="plan-price-amount">170</span><span class="plan-price-period">&nbsp;/ month</span></div>
+        </div>
+        <div class="plan-body">
+          <div style="background:var(--cream);border-radius:6px;padding:12px 14px;margin-bottom:16px;font-size:13px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--maroon);">R15,000</div>
+            <div style="color:var(--mid-grey);">funeral cover</div>
+          </div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Professional embalming &amp; preparation</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Standard coffin – choice of 3 options</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Hearse transport within 50km</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>One night viewing at our parlour</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Administrative &amp; paperwork assistance</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>1 Spouse + up to 4 children covered</div>
+          <div class="plan-feature" style="color:var(--status-rejected);"><div class="plan-feature-icon" style="background:rgba(185,28,28,0.08);color:var(--status-rejected);">✗</div>Extended family not included</div>
+          <div style="background:rgba(201,168,76,0.1);border-radius:6px;padding:10px 12px;margin-top:12px;font-size:12px;color:#7A5C00;">⏳ 6-month waiting period applies</div>
+          <div class="mt-3"><a href="register.html?plan=comfort" class="btn btn-maroon w-full" style="justify-content:center;">Choose Comfort</a></div>
+        </div>
+      </div>
+
+      <!-- PRESTIGE -->
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div class="plan-badge">Most Popular</div>
+          <div class="plan-name">Prestige Plan</div>
+          <div class="plan-price"><span class="plan-price-currency">R</span><span class="plan-price-amount">210</span><span class="plan-price-period">&nbsp;/ month</span></div>
+        </div>
+        <div class="plan-body">
+          <div style="background:var(--cream);border-radius:6px;padding:12px 14px;margin-bottom:16px;font-size:13px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--maroon);">R25,000</div>
+            <div style="color:var(--mid-grey);">funeral cover</div>
+          </div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Professional embalming &amp; preparation</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Premium coffin – choice of 8 options</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Hearse transport within 100km</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Two nights viewing at our parlour</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Catering for up to 50 guests</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Floral arrangements included</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>1 Spouse + up to 6 children covered</div>
+          <div class="plan-feature"><div class="plan-feature-icon gold">✓</div>Up to 2 extended family members</div>
+          <div style="background:rgba(201,168,76,0.1);border-radius:6px;padding:10px 12px;margin-top:12px;font-size:12px;color:#7A5C00;">⏳ 3-month waiting period applies</div>
+          <div class="mt-3"><a href="register.html?plan=prestige" class="btn btn-gold w-full" style="justify-content:center;color:var(--maroon-dark);">Choose Prestige</a></div>
+        </div>
+      </div>
+
+      <!-- LEGACY -->
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="plan-name">Legacy Plan</div>
+          <div class="plan-price"><span class="plan-price-currency">R</span><span class="plan-price-amount">240</span><span class="plan-price-period">&nbsp;/ month</span></div>
+        </div>
+        <div class="plan-body">
+          <div style="background:var(--cream);border-radius:6px;padding:12px 14px;margin-bottom:16px;font-size:13px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--maroon);">R35,000</div>
+            <div style="color:var(--mid-grey);">funeral cover</div>
+          </div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Professional embalming &amp; preparation</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Luxury coffin – choice of 15 options</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Hearse + 2 additional family vehicles</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Three nights viewing at our parlour</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Full catering for up to 100 guests</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Premium floral arrangements</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Tombstone contribution (R3,000)</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>1 Spouse + up to 8 children covered</div>
+          <div class="plan-feature"><div class="plan-feature-icon">✓</div>Up to 4 extended family members</div>
+          <div style="background:rgba(201,168,76,0.1);border-radius:6px;padding:10px 12px;margin-top:12px;font-size:12px;color:#7A5C00;">⏳ 1-month waiting period applies</div>
+          <div class="mt-3"><a href="register.html?plan=legacy" class="btn btn-maroon w-full" style="justify-content:center;">Choose Legacy</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="section-label">Side by Side</div>
+    <h2 class="section-title">Plan <strong>Comparison</strong></h2>
+    <div class="divider"></div>
+    <div class="compare-table">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%;text-align:left;">Feature</th>
+              <th>Comfort<br><span style="font-weight:400;font-size:12px;">R170/m</span></th>
+              <th>Prestige<br><span style="font-weight:400;font-size:12px;">R210/m</span></th>
+              <th>Legacy<br><span style="font-weight:400;font-size:12px;">R240/m</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Cover Amount</td><td>R15,000</td><td><strong style="color:var(--maroon);">R25,000</strong></td><td><strong style="color:var(--maroon);">R35,000</strong></td></tr>
+            <tr><td>Waiting Period</td><td>6 months</td><td>3 months</td><td>1 month</td></tr>
+            <tr><td>Professional Embalming</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+            <tr><td>Coffin Choice</td><td>3 options</td><td>8 options</td><td>15 options</td></tr>
+            <tr><td>Hearse Transport</td><td>50km</td><td>100km</td><td>Hearse + 2 cars</td></tr>
+            <tr><td>Viewing Nights</td><td>1 night</td><td>2 nights</td><td>3 nights</td></tr>
+            <tr><td>Catering</td><td><span class="cross">—</span></td><td>50 guests</td><td>100 guests</td></tr>
+            <tr><td>Floral Arrangements</td><td><span class="cross">—</span></td><td><span class="tick">✓</span></td><td>Premium</td></tr>
+            <tr><td>Tombstone Contribution</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td>R3,000</td></tr>
+            <tr><td>Spouse Covered</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+            <tr><td>Children Covered</td><td>Up to 4</td><td>Up to 6</td><td>Up to 8</td></tr>
+            <tr><td>Extended Family</td><td><span class="cross">—</span></td><td>Up to 2</td><td>Up to 4</td></tr>
+            <tr><td>Administrative Assistance</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDITIONAL SERVICES -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-label">Beyond the Plan</div>
+    <h2 class="section-title">Additional <strong>Services</strong></h2>
+    <div class="divider"></div>
+    <p class="section-body">We offer a range of additional services that can be arranged alongside any plan. Contact us to discuss your specific needs.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✈️</div>
+        <div><div class="service-title">International Repatriation</div><div class="service-body">We coordinate the repatriation of remains to neighbouring countries including Botswana, Zimbabwe, and Mozambique. Documentation and logistics handled end-to-end.</div></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div><div class="service-title">Home Collection</div><div class="service-body">Available 24/7 across our service areas. Our trained team responds with dignity and care at any hour, including weekends and public holidays.</div></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <div><div class="service-title">Death Registration Assistance</div><div class="service-body">Navigating government paperwork during bereavement is difficult. We assist families with death certificates, DHA forms, and SASSA notifications.</div></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🕯️</div>
+        <div><div class="service-title">Memorial &amp; Tombstone Services</div><div class="service-body">We partner with tombstone suppliers and can assist families in organising memorial services and unveilings months after the initial funeral.</div></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌸</div>
+        <div><div class="service-title">Grief Counselling Referral</div><div class="service-body">Grief is a journey. We maintain referral relationships with registered counsellors and can connect families with bereavement support services.</div></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎵</div>
+        <div><div class="service-title">Choir &amp; Programme Coordination</div><div class="service-body">We can help coordinate funeral programmes, church choirs, PA systems, and audio-visual tribute presentations to honour your loved one.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--maroon-dark);position:relative;overflow:hidden;text-align:center;">
+  <div class="pattern-overlay" style="position:absolute;inset:0;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-label" style="color:var(--gold);">Ready to Get Started?</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(28px,4vw,44px);color:var(--white);font-weight:300;margin-bottom:16px;">Register today and <strong>secure your family's future.</strong></h2>
+    <p style="color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;">Cover starts from just R170 per month. No medical tests required. Quick, simple registration.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="register.html" class="btn btn-gold btn-lg">Register Now</a>
+      <a href="feedback.html" class="btn btn-outline btn-lg" style="color:var(--white);border-color:rgba(255,255,255,0.4);">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Mamoratwa Wa Afrika</div>
+        <div class="footer-brand-desc">Give your loved ones a dignified send off. Rooted in compassion, guided by African values.</div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/mamoratwa_waafrika" target="_blank" class="social-link">ig</a>
+          <a href="https://web.facebook.com/mwaafrika" target="_blank" class="social-link">fb</a>
+          <a href="https://x.com/Mamoratwawaa" target="_blank" class="social-link">𝕏</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Packages</a></li>
+          <li><a href="community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Members</div>
+        <ul class="footer-links">
+          <li><a href="login.html">Member Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-info">083 584 4679<br>073 621 3508 (Emergency)<br>admin@mwau.co.za</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 Mamoratwa Wa Afrika Undertakers. All rights reserved.</div>
+      <a href="privacy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const s = Auth.getSession();
+    if (s) {
+      document.getElementById('nav-actions').innerHTML = `
+        <a href="${s.role==='admin'?'admin-dashboard.html':'member-dashboard.html'}" class="btn btn-outline btn-sm">Dashboard</a>
+        <button class="btn btn-gold btn-sm" onclick="Auth.logout()">Logout</button>`;
+    }
+  });
+</script>
+</body>
+</html>
