@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback – Mamoratwa Wa Afrika</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .feedback-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+    .contact-block { margin-bottom: 28px; }
+    .contact-block-icon { font-size: 22px; margin-bottom: 6px; }
+    .contact-block-label { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .contact-block-value { font-size: 15px; color: var(--white); line-height: 1.8; }
+    .feedback-card { background: var(--white); border-radius: 10px; padding: 36px; box-shadow: var(--shadow-md); }
+    .feedback-type-tabs { display: flex; gap: 10px; margin-bottom: 24px; }
+    .feedback-type-btn { flex: 1; padding: 12px; border-radius: 6px; border: 2px solid var(--light-grey); background: none; font-family: var(--font-body); font-size: 13px; font-weight: 500; cursor: pointer; transition: var(--transition); text-align: center; }
+    .feedback-type-btn:hover { border-color: var(--maroon-light); }
+    .feedback-type-btn.selected { border-color: var(--maroon); background: rgba(107,15,26,0.04); color: var(--maroon); }
+    .rating-stars { display: flex; gap: 8px; margin-bottom: 4px; }
+    .star { font-size: 28px; cursor: pointer; color: var(--light-grey); transition: color 0.15s; user-select: none; }
+    .star.active { color: var(--gold); }
+    @media (max-width: 900px) { .feedback-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div><div class="nav-logo-text">Mamoratwa Wa Afrika</div><div class="nav-logo-sub">Funeral Undertakers</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services &amp; Packages</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="feedback.html" class="active">Feedback</a></li>
+  </ul>
+  <div class="nav-actions" id="nav-actions">
+    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+    <a href="register.html" class="btn btn-gold btn-sm">Get a Quote</a>
+  </div>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-pattern pattern-dark"></div>
+  <div class="page-header-content">
+    <div class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">›</span><span>Feedback</span></div>
+    <h1 class="page-header-title">Compliments &amp; <em style="font-style:italic;color:var(--gold-light);">Complaints</em></h1>
+    <p class="page-header-subtitle">Your voice matters. Help us serve you and your community better.</p>
+  </div>
+</div>
+
+<section class="section" style="background:var(--maroon-dark);position:relative;overflow:hidden;">
+  <div class="pattern-overlay" style="position:absolute;inset:0;opacity:0.5;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="feedback-layout">
+      <!-- LEFT: contact info -->
+      <div>
+        <div class="section-label" style="color:var(--gold);">Get in Touch</div>
+        <h2 style="font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);color:var(--white);font-weight:300;margin-bottom:16px;">We'd love to <strong>hear from you.</strong></h2>
+        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:36px;">Whether you want to share a compliment, raise a concern, or simply ask a question — our team is here and we take every message seriously.</p>
+
+        <div class="contact-block">
+          <div class="contact-block-icon">📞</div>
+          <div class="contact-block-label">Phone</div>
+          <div class="contact-block-value">083 584 4679</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-icon">🚨</div>
+          <div class="contact-block-label">Emergency Line</div>
+          <div class="contact-block-value">073 621 3508<br><span style="font-size:12px;color:rgba(255,255,255,0.4);">Available 24 hours</span></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-icon">✉</div>
+          <div class="contact-block-label">Email</div>
+          <div class="contact-block-value"><a href="mailto:admin@mwau.co.za" style="color:var(--gold-light);">admin@mwau.co.za</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-icon">🏢</div>
+          <div class="contact-block-label">Office Hours</div>
+          <div class="contact-block-value">Mon–Fri: 08:00–17:00<br>Saturday: 08:00–13:00<br>Sundays / Public Holidays: Closed</div>
+        </div>
+        <div style="margin-top:28px;">
+          <div class="contact-block-label" style="margin-bottom:12px;">Follow Us</div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/mamoratwa_waafrika" target="_blank" class="social-link">ig</a>
+            <a href="https://web.facebook.com/mwaafrika" target="_blank" class="social-link">fb</a>
+            <a href="https://x.com/Mamoratwawaa" target="_blank" class="social-link">𝕏</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: feedback form -->
+      <div class="feedback-card">
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--maroon-dark);margin-bottom:6px;">Send Us a Message</div>
+        <div style="font-size:13px;color:var(--mid-grey);margin-bottom:24px;">We aim to respond within 2 business days.</div>
+
+        <div class="feedback-type-tabs">
+          <button class="feedback-type-btn selected" onclick="selectType('compliment',this)">😊 Compliment</button>
+          <button class="feedback-type-btn" onclick="selectType('complaint',this)">⚠️ Complaint</button>
+          <button class="feedback-type-btn" onclick="selectType('enquiry',this)">❓ Enquiry</button>
+        </div>
+
+        <div id="rating-section">
+          <div class="form-label">How would you rate our service?</div>
+          <div class="rating-stars" id="stars">
+            <span class="star" data-val="1" onclick="setRating(1)">★</span>
+            <span class="star" data-val="2" onclick="setRating(2)">★</span>
+            <span class="star" data-val="3" onclick="setRating(3)">★</span>
+            <span class="star" data-val="4" onclick="setRating(4)">★</span>
+            <span class="star" data-val="5" onclick="setRating(5)">★</span>
+          </div>
+          <div style="font-size:12px;color:var(--mid-grey);margin-bottom:20px;" id="rating-label">Click to rate</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">First Name *</label><input type="text" id="fb-fname" class="form-control" placeholder="Your first name" /></div>
+          <div class="form-group"><label class="form-label">Last Name *</label><input type="text" id="fb-lname" class="form-control" placeholder="Your last name" /></div>
+          <div class="form-group"><label class="form-label">Email *</label><input type="email" id="fb-email" class="form-control" placeholder="your@email.com" /></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="fb-phone" class="form-control" placeholder="Optional" /></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Branch</label>
+          <select id="fb-branch" class="form-control">
+            <option value="">Select branch (if applicable)</option>
+            <option>Zeerust Branch</option>
+            <option>Mafikeng Branch</option>
+            <option>General / Head Office</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subject *</label>
+          <input type="text" id="fb-subject" class="form-control" placeholder="Brief subject of your message" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message *</label>
+          <textarea id="fb-message" class="form-control" rows="5" placeholder="Tell us more…" style="resize:vertical;"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Attachment (optional)</label>
+          <div class="file-upload-area">
+            <input type="file" accept="image/*,.pdf,.doc,.docx" />
+            <div class="file-upload-icon">📎</div>
+            <div class="file-upload-text">Attach a file if relevant</div>
+            <div class="file-upload-hint">Images, PDF, or Word doc · Max 5MB</div>
+          </div>
+        </div>
+
+        <button class="btn btn-maroon w-full btn-lg" style="justify-content:center;" onclick="submitFeedback()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Mamoratwa Wa Afrika</div>
+        <div class="footer-brand-desc">Give your loved ones a dignified send off. Rooted in compassion, guided by African values.</div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/mamoratwa_waafrika" target="_blank" class="social-link">ig</a>
+          <a href="https://web.facebook.com/mwaafrika" target="_blank" class="social-link">fb</a>
+          <a href="https://x.com/Mamoratwawaa" target="_blank" class="social-link">𝕏</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services &amp; Packages</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Members</div>
+        <ul class="footer-links">
+          <li><a href="login.html">Member Login</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-info">083 584 4679<br>073 621 3508 (Emergency)<br>admin@mwau.co.za</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 Mamoratwa Wa Afrika Undertakers. All rights reserved.</div>
+      <a href="privacy.html" style="color:rgba(255,255,255,0.4);">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  let currentRating = 0;
+  let currentType = 'compliment';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const s = Auth.getSession();
+    if (s) {
+      document.getElementById('nav-actions').innerHTML = `
+        <a href="${s.role==='admin'?'admin-dashboard.html':'member-dashboard.html'}" class="btn btn-outline btn-sm">Dashboard</a>
+        <button class="btn btn-gold btn-sm" onclick="Auth.logout()">Logout</button>`;
+    }
+    initFileUploads();
+  });
+
+  function selectType(type, btn) {
+    currentType = type;
+    document.querySelectorAll('.feedback-type-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const ratingSec = document.getElementById('rating-section');
+    ratingSec.style.display = type === 'compliment' ? 'block' : 'none';
+  }
+
+  function setRating(val) {
+    currentRating = val;
+    const labels = ['','Poor','Fair','Good','Very Good','Excellent'];
+    document.getElementById('rating-label').textContent = labels[val] + ' (' + val + '/5)';
+    document.querySelectorAll('.star').forEach((s, i) => s.classList.toggle('active', i < val));
+  }
+
+  function submitFeedback() {
+    const fname   = document.getElementById('fb-fname').value.trim();
+    const lname   = document.getElementById('fb-lname').value.trim();
+    const email   = document.getElementById('fb-email').value.trim();
+    const subject = document.getElementById('fb-subject').value.trim();
+    const message = document.getElementById('fb-message').value.trim();
+    const branch  = document.getElementById('fb-branch').value;
+    const phone   = document.getElementById('fb-phone').value.trim();
+    if (!fname || !lname || !email || !subject || !message) {
+      showToast('Please fill in all required fields.', 'error'); return;
+    }
+    if (!validateEmail(email)) { showToast('Please enter a valid email address.', 'error'); return; }
+
+    // Persist to MWAU_DATA so the admin inbox reflects it
+    MWAU_DATA.feedback = MWAU_DATA.feedback || [];
+    MWAU_DATA.feedback.push({
+      id: 'FB' + String(MWAU_DATA.feedback.length + 1).padStart(3, '0'),
+      type: currentType,
+      rating: currentRating,
+      firstName: fname, lastName: lname,
+      email, phone, branch, subject, message,
+      date: new Date().toISOString().split('T')[0],
+      status: 'unread'
+    });
+    saveData();
+
+    showToast('Thank you! Your message has been sent. We will respond within 2 business days.', 'success', 5000);
+    document.getElementById('fb-fname').value = '';
+    document.getElementById('fb-lname').value = '';
+    document.getElementById('fb-email').value = '';
+    document.getElementById('fb-phone').value = '';
+    document.getElementById('fb-subject').value = '';
+    document.getElementById('fb-message').value = '';
+    currentRating = 0;
+    document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+    document.getElementById('rating-label').textContent = 'Click to rate';
+  }
+</script>
+</body>
+</html>

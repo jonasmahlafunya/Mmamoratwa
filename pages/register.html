@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – Mamoratwa Wa Afrika</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body { background: var(--cream); min-height: 100vh; }
+    .reg-wrapper { padding: 100px 20px 60px; max-width: 860px; margin: 0 auto; }
+    .reg-steps { display: flex; gap: 0; margin-bottom: 36px; }
+    .reg-step { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+    .reg-step:not(:last-child)::after { content: ''; position: absolute; top: 18px; left: 50%; width: 100%; height: 2px; background: var(--light-grey); z-index: 0; }
+    .reg-step.done::after, .reg-step.active::after { background: var(--maroon); }
+    .step-circle { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--light-grey); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--light-grey); position: relative; z-index: 1; transition: var(--transition); }
+    .reg-step.done .step-circle { background: var(--maroon); border-color: var(--maroon); color: var(--white); }
+    .reg-step.active .step-circle { background: var(--white); border-color: var(--maroon); color: var(--maroon); box-shadow: 0 0 0 4px rgba(107,15,26,0.12); }
+    .step-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid-grey); font-weight: 500; white-space: nowrap; }
+    .reg-step.active .step-label { color: var(--maroon); }
+
+    .reg-card { background: var(--white); border-radius: 10px; box-shadow: var(--shadow-md); padding: 40px; }
+    .reg-card-title { font-family: var(--font-display); font-size: 26px; font-weight: 600; color: var(--maroon-dark); margin-bottom: 6px; }
+    .reg-card-sub { font-size: 14px; color: var(--mid-grey); margin-bottom: 28px; }
+
+    .plan-select-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .plan-select-card { border: 2px solid var(--light-grey); border-radius: 8px; padding: 20px; cursor: pointer; transition: var(--transition); text-align: center; }
+    .plan-select-card:hover { border-color: var(--maroon-light); }
+    .plan-select-card.selected { border-color: var(--maroon); background: rgba(107,15,26,0.04); }
+    .plan-select-card input[type="radio"] { display: none; }
+    .plan-select-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--maroon-dark); margin-bottom: 4px; }
+    .plan-select-price { font-size: 22px; font-weight: 600; color: var(--gold); margin-bottom: 2px; }
+    .plan-select-period { font-size: 11px; color: var(--mid-grey); }
+    .plan-select-cover { font-size: 12px; color: var(--mid-grey); margin-top: 8px; border-top: 1px solid var(--cream-dark); padding-top: 8px; }
+
+    .section-divider { border: none; border-top: 1px solid var(--cream-dark); margin: 28px 0; }
+    .sub-section-title { font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--cream-dark); }
+
+    .dependant-card { background: var(--cream); border-radius: 8px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--cream-dark); position: relative; }
+    .dependant-remove { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--mid-grey); cursor: pointer; font-size: 18px; }
+    .dependant-remove:hover { color: var(--status-rejected); }
+
+    .payment-tabs { display: flex; gap: 12px; margin-bottom: 24px; }
+    .payment-tab { flex: 1; padding: 14px; border: 2px solid var(--light-grey); border-radius: 8px; text-align: center; cursor: pointer; transition: var(--transition); font-size: 14px; font-weight: 500; }
+    .payment-tab:hover { border-color: var(--maroon-light); }
+    .payment-tab.selected { border-color: var(--maroon); background: rgba(107,15,26,0.04); color: var(--maroon); }
+
+    .bank-details { background: var(--cream); border-radius: 8px; padding: 20px; border-left: 4px solid var(--gold); }
+    .bank-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; border-bottom: 1px solid var(--cream-dark); }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-label { color: var(--mid-grey); }
+    .bank-value { font-weight: 600; color: var(--charcoal); }
+
+    .form-nav { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--cream-dark); }
+
+    @media (max-width: 600px) { .plan-select-grid { grid-template-columns: 1fr; } .reg-card { padding: 24px; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="nav-logo-icon">M</div>
+    <div><div class="nav-logo-text">Mamoratwa Wa Afrika</div><div class="nav-logo-sub">Funeral Undertakers</div></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="services.html">Services &amp; Packages</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+  </div>
+  <button class="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="reg-wrapper">
+  <!-- Steps -->
+  <div class="reg-steps" id="steps-indicator">
+    <div class="reg-step active" data-step="1"><div class="step-circle">1</div><div class="step-label">Choose Plan</div></div>
+    <div class="reg-step" data-step="2"><div class="step-circle">2</div><div class="step-label">Personal Info</div></div>
+    <div class="reg-step" data-step="3"><div class="step-circle">3</div><div class="step-label">Dependants</div></div>
+    <div class="reg-step" data-step="4"><div class="step-circle">4</div><div class="step-label">Payment</div></div>
+    <div class="reg-step" data-step="5"><div class="step-circle">5</div><div class="step-label">Review</div></div>
+  </div>
+
+  <!-- ── STEP 1: PLAN ── -->
+  <div class="reg-card" id="step-1">
+    <div class="reg-card-title">Choose Your Cover Plan</div>
+    <div class="reg-card-sub">Select the plan that best fits your family's needs. You can upgrade at any time.</div>
+
+    <div class="plan-select-grid">
+      <label class="plan-select-card" id="plan-card-comfort">
+        <input type="radio" name="plan" value="comfort" />
+        <div class="plan-select-name">Comfort</div>
+        <div class="plan-select-price">R170</div>
+        <div class="plan-select-period">per month</div>
+        <div class="plan-select-cover">R15,000 cover &bull; 6-month waiting</div>
+      </label>
+      <label class="plan-select-card" id="plan-card-prestige">
+        <input type="radio" name="plan" value="prestige" />
+        <div class="plan-select-name">Prestige</div>
+        <div class="plan-select-price">R210</div>
+        <div class="plan-select-period">per month</div>
+        <div class="plan-select-cover">R25,000 cover &bull; 3-month waiting</div>
+      </label>
+      <label class="plan-select-card" id="plan-card-legacy">
+        <input type="radio" name="plan" value="legacy" />
+        <div class="plan-select-name">Legacy</div>
+        <div class="plan-select-price">R240</div>
+        <div class="plan-select-period">per month</div>
+        <div class="plan-select-cover">R35,000 cover &bull; 1-month waiting</div>
+      </label>
+    </div>
+
+    <div id="plan-error" class="alert alert-error hidden">Please select a plan to continue.</div>
+
+    <div class="form-nav">
+      <span></span>
+      <button class="btn btn-maroon btn-lg" onclick="nextStep(1)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: PERSONAL INFO ── -->
+  <div class="reg-card hidden" id="step-2">
+    <div class="reg-card-title">Personal Information</div>
+    <div class="reg-card-sub">Please provide your details exactly as they appear on your ID document.</div>
+
+    <div class="sub-section-title">Account Details</div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Email Address *</label><input type="email" id="reg-email" class="form-control" placeholder="your@email.com" /></div>
+      <div class="form-group"><label class="form-label">Password *</label><input type="password" id="reg-password" class="form-control" placeholder="Min. 8 characters" /></div>
+      <div class="form-group col-span-2"><label class="form-label">Confirm Password *</label><input type="password" id="reg-confirm-password" class="form-control" placeholder="Re-enter your password" /></div>
+    </div>
+
+    <hr class="section-divider" />
+    <div class="sub-section-title">Personal Details</div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">First Name *</label><input type="text" id="reg-firstname" class="form-control" placeholder="First name" /></div>
+      <div class="form-group"><label class="form-label">Last Name *</label><input type="text" id="reg-lastname" class="form-control" placeholder="Last name" /></div>
+      <div class="form-group"><label class="form-label">SA ID Number *</label><input type="text" id="reg-id" class="form-control" placeholder="13-digit ID number" maxlength="13" /></div>
+      <div class="form-group"><label class="form-label">Date of Birth *</label><input type="date" id="reg-dob" class="form-control" /></div>
+      <div class="form-group"><label class="form-label">Gender *</label>
+        <select id="reg-gender" class="form-control"><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">Phone Number *</label><input type="tel" id="reg-phone" class="form-control" placeholder="e.g. 082 123 4567" /></div>
+    </div>
+
+    <hr class="section-divider" />
+    <div class="sub-section-title">Address</div>
+    <div class="form-group"><label class="form-label">Street Address *</label><input type="text" id="reg-address" class="form-control" placeholder="Street number and name" /></div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">City / Town *</label><input type="text" id="reg-city" class="form-control" placeholder="City or town" /></div>
+      <div class="form-group"><label class="form-label">Province *</label>
+        <select id="reg-province" class="form-control">
+          <option value="">Select province</option>
+          <option>Gauteng</option><option>North West</option><option>Limpopo</option>
+          <option>Mpumalanga</option><option>KwaZulu-Natal</option><option>Western Cape</option>
+          <option>Eastern Cape</option><option>Free State</option><option>Northern Cape</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Postal Code</label><input type="text" id="reg-postal" class="form-control" placeholder="e.g. 2745" /></div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-outline" style="border-color:var(--maroon);color:var(--maroon);" onclick="prevStep(2)">← Back</button>
+      <button class="btn btn-maroon btn-lg" onclick="nextStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: DEPENDANTS ── -->
+  <div class="reg-card hidden" id="step-3">
+    <div class="reg-card-title">Add Dependants</div>
+    <div class="reg-card-sub">Add family members covered under your plan. Limits apply based on your selected plan.</div>
+
+    <div class="alert alert-info" id="dep-limit-info">Loading plan limits…</div>
+
+    <div id="dependants-list"></div>
+
+    <button class="btn btn-outline" style="border-color:var(--maroon);color:var(--maroon);" onclick="addDependant()">+ Add Dependant</button>
+
+    <div class="form-nav">
+      <button class="btn btn-outline" style="border-color:var(--maroon);color:var(--maroon);" onclick="prevStep(3)">← Back</button>
+      <button class="btn btn-maroon btn-lg" onclick="nextStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: PAYMENT ── -->
+  <div class="reg-card hidden" id="step-4">
+    <div class="reg-card-title">Payment Details</div>
+    <div class="reg-card-sub">Choose your preferred payment method to activate your cover.</div>
+
+    <div class="payment-tabs">
+      <div class="payment-tab selected" onclick="selectPayment('eft')">🏦 Bank Transfer (EFT)</div>
+      <div class="payment-tab" onclick="selectPayment('card')">💳 Debit / Credit Card</div>
+    </div>
+
+    <!-- EFT -->
+    <div id="payment-eft">
+      <div class="alert alert-info">Make your EFT payment using the details below. Use your <strong>ID number</strong> as the reference. Your account will be activated once payment is confirmed.</div>
+      <div class="bank-details">
+        <div class="bank-row"><span class="bank-label">Bank</span><span class="bank-value">First National Bank (FNB)</span></div>
+        <div class="bank-row"><span class="bank-label">Account Name</span><span class="bank-value">Mamoratwa Wa Afrika</span></div>
+        <div class="bank-row"><span class="bank-label">Account Number</span><span class="bank-value">62 000 000 000</span></div>
+        <div class="bank-row"><span class="bank-label">Branch Code</span><span class="bank-value">250 655</span></div>
+        <div class="bank-row"><span class="bank-label">Reference</span><span class="bank-value" id="eft-ref">YOUR_ID_NUMBER</span></div>
+        <div class="bank-row"><span class="bank-label">Amount Due</span><span class="bank-value" id="eft-amount" style="color:var(--maroon);">—</span></div>
+      </div>
+      <div class="form-group mt-3">
+        <label class="form-label">Upload Proof of Payment (optional)</label>
+        <div class="file-upload-area">
+          <input type="file" accept="image/*,.pdf" />
+          <div class="file-upload-icon">📎</div>
+          <div class="file-upload-text">Click to upload proof of payment</div>
+          <div class="file-upload-hint">JPG, PNG or PDF · Max 5MB</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div id="payment-card" class="hidden">
+      <div class="alert alert-warning">This is a demo card form. No real payment is processed.</div>
+      <div class="form-group"><label class="form-label">Cardholder Name</label><input type="text" class="form-control" placeholder="Name on card" /></div>
+      <div class="form-group"><label class="form-label">Card Number</label><input type="text" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" /></div>
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label">Expiry Date</label><input type="text" class="form-control" placeholder="MM / YY" maxlength="7" /></div>
+        <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-control" placeholder="3-digit code" maxlength="3" /></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Monthly Debit Amount</label>
+        <input type="text" id="card-amount" class="form-control" readonly style="background:var(--cream);" />
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-outline" style="border-color:var(--maroon);color:var(--maroon);" onclick="prevStep(4)">← Back</button>
+      <button class="btn btn-maroon btn-lg" onclick="nextStep(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: REVIEW ── -->
+  <div class="reg-card hidden" id="step-5">
+    <div class="reg-card-title">Review &amp; Submit</div>
+    <div class="reg-card-sub">Please review your details before submitting. Your application will be reviewed by our team.</div>
+
+    <div id="review-content"></div>
+
+    <div class="alert alert-warning mt-3">
+      By submitting, you agree to our terms and conditions. Your membership will be activated upon admin approval and payment confirmation.
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-outline" style="border-color:var(--maroon);color:var(--maroon);" onclick="prevStep(5)">← Back</button>
+      <button class="btn btn-gold btn-lg" style="color:var(--maroon-dark);" onclick="submitRegistration()">Submit Application ✓</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+let currentStep = 1;
+let selectedPlan = null;
+let dependants = [];
+let paymentMethod = 'eft';
+
+const planDetails = {
+  comfort:  { name: 'Comfort',  price: 170, cover: 15000, limits: { Spouse: 1, Child: 4, Extended: 0 } },
+  prestige: { name: 'Prestige', price: 210, cover: 25000, limits: { Spouse: 1, Child: 6, Extended: 2 } },
+  legacy:   { name: 'Legacy',   price: 240, cover: 35000, limits: { Spouse: 1, Child: 8, Extended: 4 } }
+};
+
+// Select plan from URL
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const planParam = params.get('plan');
+  if (planParam && planDetails[planParam]) {
+    const radio = document.querySelector(`input[name="plan"][value="${planParam}"]`);
+    if (radio) { radio.checked = true; document.getElementById(`plan-card-${planParam}`).classList.add('selected'); selectedPlan = planParam; }
+  }
+  // Pre-fill from quote form redirect
+  const prefillEmail = params.get('email');
+  const prefillFname = params.get('fname');
+  if (prefillEmail) { const el = document.getElementById('reg-email'); if (el) el.value = prefillEmail; }
+  if (prefillFname) { const el = document.getElementById('reg-firstname'); if (el) el.value = prefillFname; }
+  document.querySelectorAll('.plan-select-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.plan-select-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedPlan = card.querySelector('input').value;
+    });
+  });
+});
+
+function updateSteps(step) {
+  document.querySelectorAll('.reg-step').forEach((el, i) => {
+    const n = i + 1;
+    el.classList.remove('active', 'done');
+    if (n < step) el.classList.add('done');
+    else if (n === step) el.classList.add('active');
+  });
+}
+
+function showStep(n) {
+  for (let i = 1; i <= 5; i++) document.getElementById(`step-${i}`).classList.add('hidden');
+  document.getElementById(`step-${n}`).classList.remove('hidden');
+  updateSteps(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep(from) {
+  if (from === 1) {
+    if (!selectedPlan) { document.getElementById('plan-error').classList.remove('hidden'); return; }
+    document.getElementById('plan-error').classList.add('hidden');
+    // update EFT ref
+    updatePaymentDetails();
+  }
+  if (from === 2) {
+    const required = ['reg-email','reg-password','reg-confirm-password','reg-firstname','reg-lastname','reg-id','reg-dob','reg-gender','reg-phone','reg-address','reg-city','reg-province'];
+    let valid = true;
+    required.forEach(id => { const el = document.getElementById(id); if (!el.value.trim()) { el.style.borderColor='#B91C1C'; valid = false; } else el.style.borderColor=''; });
+    if (!valid) { showToast('Please fill in all required fields.', 'error'); return; }
+    const pwd = document.getElementById('reg-password').value;
+    const cpwd = document.getElementById('reg-confirm-password').value;
+    if (pwd !== cpwd) { showToast('Passwords do not match.', 'error'); document.getElementById('reg-confirm-password').style.borderColor='#B91C1C'; return; }
+    if (pwd.length < 8) { showToast('Password must be at least 8 characters.', 'error'); return; }
+  }
+  if (from === 3) {
+    updateDepLimitInfo();
+  }
+  if (from === 4) {
+    buildReview();
+  }
+  currentStep = from + 1;
+  showStep(currentStep);
+  if (from === 2) updateDepLimitInfo();
+}
+
+function prevStep(from) { currentStep = from - 1; showStep(currentStep); }
+
+function updatePaymentDetails() {
+  if (!selectedPlan) return;
+  const plan = planDetails[selectedPlan];
+  const idVal = document.getElementById('reg-id')?.value || 'YOUR_ID_NUMBER';
+  const el = document.getElementById('eft-ref'); if (el) el.textContent = idVal || 'YOUR_ID_NUMBER';
+  const amtEl = document.getElementById('eft-amount'); if (amtEl) amtEl.textContent = `R ${plan.price}.00 / month`;
+  const cardEl = document.getElementById('card-amount'); if (cardEl) cardEl.value = `R ${plan.price}.00 per month`;
+}
+
+function updateDepLimitInfo() {
+  if (!selectedPlan) return;
+  const plan = planDetails[selectedPlan];
+  const lim = plan.limits;
+  const info = document.getElementById('dep-limit-info');
+  info.className = 'alert alert-info';
+  info.innerHTML = `<strong>${plan.name} Plan limits:</strong> Spouse: ${lim.Spouse} &bull; Children: ${lim.Child} &bull; Extended family: ${lim.Extended === 0 ? 'Not included' : lim.Extended}`;
+}
+
+function addDependant() {
+  const idx = dependants.length;
+  dependants.push({ relationship: '', firstName: '', lastName: '', idNumber: '', dob: '', gender: '' });
+  renderDependants();
+}
+
+function removeDependant(idx) {
+  dependants.splice(idx, 1);
+  renderDependants();
+}
+
+function renderDependants() {
+  const list = document.getElementById('dependants-list');
+  list.innerHTML = '';
+  if (dependants.length === 0) {
+    list.innerHTML = '<p style="color:var(--mid-grey);font-size:14px;margin-bottom:16px;">No dependants added. Click the button below to add a dependant.</p>';
+    return;
+  }
+  dependants.forEach((dep, i) => {
+    const card = document.createElement('div');
+    card.className = 'dependant-card';
+    card.innerHTML = `
+      <button class="dependant-remove" onclick="removeDependant(${i})" title="Remove">×</button>
+      <div style="font-size:13px;font-weight:600;color:var(--maroon-dark);margin-bottom:14px;">Dependant ${i+1}</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Relationship *</label>
+          <select class="form-control dep-rel" data-idx="${i}">
+            <option value="">Select</option>
+            <option ${dep.relationship==='Spouse'?'selected':''}>Spouse</option>
+            <option ${dep.relationship==='Child'?'selected':''}>Child</option>
+            <option ${dep.relationship==='Extended'?'selected':''}>Extended Family</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-control dep-fname" data-idx="${i}" value="${dep.firstName}" placeholder="First name" /></div>
+        <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-control dep-lname" data-idx="${i}" value="${dep.lastName}" placeholder="Last name" /></div>
+        <div class="form-group"><label class="form-label">SA ID Number *</label><input type="text" class="form-control dep-id" data-idx="${i}" value="${dep.idNumber}" placeholder="13-digit ID number" maxlength="13" /></div>
+        <div class="form-group"><label class="form-label">Date of Birth *</label><input type="date" class="form-control dep-dob" data-idx="${i}" value="${dep.dob}" /></div>
+        <div class="form-group"><label class="form-label">Gender *</label>
+          <select class="form-control dep-gender" data-idx="${i}">
+            <option value="">Select</option>
+            <option ${dep.gender==='Male'?'selected':''}>Male</option>
+            <option ${dep.gender==='Female'?'selected':''}>Female</option>
+            <option ${dep.gender==='Other'?'selected':''}>Other</option>
+          </select>
+        </div>
+      </div>`;
+    list.appendChild(card);
+  });
+  // Bind changes
+  list.querySelectorAll('.dep-rel').forEach(el => el.addEventListener('change', e => { dependants[e.target.dataset.idx].relationship = e.target.value; }));
+  list.querySelectorAll('.dep-fname').forEach(el => el.addEventListener('input', e => { dependants[e.target.dataset.idx].firstName = e.target.value; }));
+  list.querySelectorAll('.dep-lname').forEach(el => el.addEventListener('input', e => { dependants[e.target.dataset.idx].lastName = e.target.value; }));
+  list.querySelectorAll('.dep-id').forEach(el => el.addEventListener('input', e => { dependants[e.target.dataset.idx].idNumber = e.target.value; }));
+  list.querySelectorAll('.dep-dob').forEach(el => el.addEventListener('input', e => { dependants[e.target.dataset.idx].dob = e.target.value; }));
+  list.querySelectorAll('.dep-gender').forEach(el => el.addEventListener('change', e => { dependants[e.target.dataset.idx].gender = e.target.value; }));
+}
+
+function selectPayment(method) {
+  paymentMethod = method;
+  document.querySelectorAll('.payment-tab').forEach((t, i) => t.classList.toggle('selected', (i===0&&method==='eft')||(i===1&&method==='card')));
+  document.getElementById('payment-eft').classList.toggle('hidden', method !== 'eft');
+  document.getElementById('payment-card').classList.toggle('hidden', method !== 'card');
+  updatePaymentDetails();
+}
+
+function buildReview() {
+  const plan = planDetails[selectedPlan];
+  const fname = document.getElementById('reg-firstname').value;
+  const lname = document.getElementById('reg-lastname').value;
+  const email = document.getElementById('reg-email').value;
+  const phone = document.getElementById('reg-phone').value;
+  const idNum = document.getElementById('reg-id').value;
+  const dob   = document.getElementById('reg-dob').value;
+
+  let depRows = dependants.map(d => `<tr><td>${d.relationship}</td><td>${d.firstName} ${d.lastName}</td><td>${d.idNumber}</td></tr>`).join('');
+  if (!depRows) depRows = '<tr><td colspan="3" style="color:var(--mid-grey);">No dependants added</td></tr>';
+
+  document.getElementById('review-content').innerHTML = `
+    <div class="sub-section-title">Selected Plan</div>
+    <div class="plan-card" style="margin-bottom:20px;">
+      <div class="plan-header" style="padding:16px 20px;">
+        <div class="plan-name">${plan.name}</div>
+        <div class="plan-price"><span class="plan-price-currency">R</span><span class="plan-price-amount">${plan.price}</span><span class="plan-price-period">&nbsp;/ month</span></div>
+      </div>
+    </div>
+    <div class="sub-section-title">Personal Details</div>
+    <div class="form-grid" style="margin-bottom:20px;">
+      <div><div class="form-label">Full Name</div><div style="font-size:14px;">${fname} ${lname}</div></div>
+      <div><div class="form-label">Email</div><div style="font-size:14px;">${email}</div></div>
+      <div><div class="form-label">Phone</div><div style="font-size:14px;">${phone}</div></div>
+      <div><div class="form-label">SA ID Number</div><div style="font-size:14px;">${idNum}</div></div>
+      <div><div class="form-label">Date of Birth</div><div style="font-size:14px;">${dob}</div></div>
+    </div>
+    <div class="sub-section-title">Dependants (${dependants.length})</div>
+    <div class="table-wrap" style="margin-bottom:20px;">
+      <table><thead><tr><th>Relationship</th><th>Name</th><th>ID Number</th></tr></thead>
+      <tbody>${depRows}</tbody></table>
+    </div>
+    <div class="sub-section-title">Payment</div>
+    <div style="font-size:14px;color:var(--mid-grey);">Method: <strong style="color:var(--charcoal);">${paymentMethod === 'eft' ? 'Bank Transfer (EFT)' : 'Debit / Credit Card'}</strong> &bull; Monthly: <strong style="color:var(--maroon);">R ${plan.price}.00</strong></div>`;
+}
+
+function submitRegistration() {
+  // Generate unique member ID
+  const existingIds = MWAU_DATA.users.map(u => u.id);
+  let num = MWAU_DATA.users.length + 1;
+  let newId;
+  do { newId = 'USR' + String(num).padStart(3, '0'); num++; } while (existingIds.includes(newId));
+
+  const fname    = document.getElementById('reg-firstname').value.trim();
+  const lname    = document.getElementById('reg-lastname').value.trim();
+  const email    = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const idNum    = document.getElementById('reg-id').value.trim();
+  const dob      = document.getElementById('reg-dob').value;
+  const gender   = document.getElementById('reg-gender').value;
+  const phone    = document.getElementById('reg-phone').value.trim();
+  const address  = document.getElementById('reg-address').value.trim();
+  const city     = document.getElementById('reg-city').value.trim();
+  const province = document.getElementById('reg-province').value;
+  const postal   = document.getElementById('reg-postal').value.trim();
+
+  // Build dependant objects
+  const newDependants = dependants.map((d, i) => ({
+    id: newId + '_DEP' + String(i + 1).padStart(2, '0'),
+    firstName: d.firstName, lastName: d.lastName,
+    relationship: d.relationship === 'Extended Family' ? 'Extended' : d.relationship,
+    idNumber: d.idNumber, dob: d.dob, gender: d.gender, status: 'active'
+  }));
+
+  const newUser = {
+    id: newId,
+    email, password, role: 'member',
+    firstName: fname, lastName: lname,
+    idNumber: idNum, dob, gender, phone,
+    address: `${address}, ${city}, ${province}${postal ? ', ' + postal : ''}`,
+    plan: selectedPlan,
+    status: 'pending',
+    premiumPaid: false,
+    joinDate: new Date().toISOString().split('T')[0],
+    dependants: newDependants,
+    claims: []
+  };
+
+  MWAU_DATA.users.push(newUser);
+
+  // Initialise 12-month payment ledger for new user (all outstanding)
+  const now = new Date();
+  const ledger = [];
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    ledger.push({ month: d.getMonth() + 1, year: d.getFullYear(), status: 'outstanding', paidDate: null });
+  }
+  MWAU_DATA.payments[newId] = ledger;
+
+  saveData();
+
+  showToast(`Application submitted! Your member ID is ${newId}. We'll notify you once approved.`, 'success', 5000);
+  setTimeout(() => { window.location.href = 'login.html'; }, 2500);
+}
+
+// Init
+renderDependants();
+</script>
+</body>
+</html>
